@@ -68,11 +68,4 @@ async function authorize() {
   return { sheetsClient };
 }
 
-/**
- * Prints the names and majors of students in a sample spreadsheet:
- * @see https://docs.google.com/spreadsheets/d/1shdx6hAiuUYrKclQReB_wtpRNk0mZvjpJ9JlF8olAsY/edit
- * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
- */
-
-
 module.exports = { authorize };

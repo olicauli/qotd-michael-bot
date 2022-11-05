@@ -1,5 +1,6 @@
 const { google } = require('googleapis');
 const { CronJob } = require('cron');
+const fs = require('fs');
 const guildId = process.env.GUILD_ID;
 const channelId = process.env.DAILY_TOPIC_ID;
 const TEXT_CHANNEL = '0';
@@ -32,11 +33,12 @@ async function askQuestion(client, auth) {
         if (!channel || channel.type != TEXT_CHANNEL) {
           return;
         }
-  
     let i = 0;
+    console.log(`index: ${i}\n rowlength: ${rows.length}`);
     const job = new CronJob('* * * * * *', async () => { //every day at 10am
         if (i < rows.length)
         {
+          console.log(`i < rowlength: ${i < rows.length}`);
           await channel.send({
             content: `${rows[i++][0]}`
           });
