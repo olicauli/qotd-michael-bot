@@ -22,6 +22,8 @@ just a set up for a discord bot with some basic commands, framework to easily ad
 
 ## Commands
 
+to deploy guild or global commands, run `npm run deploy-guild` or `npm run deploy-global`
+
 ## Credits
 
 olicauli
