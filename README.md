@@ -22,12 +22,12 @@ just a set up for a discord bot with some basic commands, framework to easily ad
 - starts the discord bot
 
 `npm run deploy [argument]` 
-- `guild` arg deploys all guild commands
-- `global` arg deploys all global commands
+- `guild` argument deploys all guild commands
+- `global` argument deploys all global commands
 
 `npm run delete [argument]` 
-- `guild` arg deletes all guild commands   
-- `global` arg deletes all global commands
+- `guild` argument deletes all guild commands   
+- `global` argument deletes all global commands
 
 ## Commands
 
