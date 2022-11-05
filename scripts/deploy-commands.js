@@ -10,6 +10,10 @@ let token = process.env.TOKEN;
 
 const clArg = process.argv.slice(2)[0];
 
+const errChecking = require('../helpers/scriptErrChecking.js');
+const checkArgs = errChecking.checkArgs;
+checkArgs(clArg);
+
 const commands = [];
 // Grab all the command files from the commands directory you created earlier
 const commandFiles = fs.readdirSync('../commands').filter(file => file.endsWith('.js'));
