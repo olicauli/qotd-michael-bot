@@ -1,7 +1,7 @@
 {
-  "name": "bot-template",
+  "name": "qotd-michael-bot",
   "version": "0.0.1",
-  "description": "template for my discord bots",
+  "description": "asks a question every day from a google sheet",
   "main": "index.js",
   "scripts": {
     "start": "node .",
@@ -11,16 +11,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/olicauli/bot-template.git"
+    "url": "git+https://github.com/olicauli/qotd-michael-bot.git"
   },
   "keywords": [],
   "author": "olicauli",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/olicauli/bot-template/issues"
+    "url": "https://github.com/olicauli/qotd-michael-bot/issues"
   },
-  "homepage": "https://github.com/olicauli/bot-template#readme",
+  "homepage": "https://github.com/olicauli/qotd-michael-bot#readme",
   "dependencies": {
+    "cron": "^2.1.0",
     "discord.js": "^14.6.0",
     "dotenv": "^16.0.3"
   },
