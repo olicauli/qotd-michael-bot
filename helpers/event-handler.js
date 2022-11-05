@@ -1,3 +1,4 @@
+//code from here: https://discordjs.guide/creating-your-bot/event-handling.html#individual-event-files
 const fs = require('node:fs');
 const path = require('node:path');
 

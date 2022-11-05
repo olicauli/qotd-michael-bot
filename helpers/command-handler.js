@@ -1,4 +1,4 @@
-//code from
+//code from here: https://discordjs.guide/creating-your-bot/command-handling.html
 const fs = require('node:fs');
 const path = require('node:path');
 const { Collection } = require('discord.js');
