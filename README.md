@@ -12,7 +12,13 @@
 
 ## Description
 
+just a set up for a discord bot with some basic commands, framework to easily add future commands/routines
+
 ## Install
+
+1. clone the repo
+2. run `npm install`
+3. start the bot with `npm run start`
 
 ## Commands
 
