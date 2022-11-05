@@ -5,13 +5,19 @@ just a set up for a discord bot with some basic commands, framework to easily ad
 ## Table of Contents
 [1. description](#description)
 
-[2. install](#install)
+[2. to-do list](#to-do-list)
 
-[3. script usage](#script-usage)
+[3. install](#install)
 
-[4. commands](#commands)
+[4. script usage](#script-usage)
 
-[5. credits](#credits)
+[5. commands](#commands)
+
+[6. credits](#credits)
+
+## To-Do List
+- make postDailyTopic store the index it last read from
+- make the output prettier with embeds
 
 ## Install
 1. clone the repo
