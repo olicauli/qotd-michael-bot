@@ -1,6 +1,4 @@
 # Bot Template
-## Description
-just a set up for a discord bot with some basic commands, framework to easily add future commands/routines
 
 ## Table of Contents
 [1. description](#description)
@@ -14,6 +12,9 @@ just a set up for a discord bot with some basic commands, framework to easily ad
 [5. commands](#commands)
 
 [6. credits](#credits)
+
+## Description
+just a set up for a discord bot with some basic commands, framework to easily add future commands/routines
 
 ## To-Do List
 - make postDailyTopic store the index it last read from
