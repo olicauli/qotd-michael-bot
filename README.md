@@ -3,13 +3,15 @@
 just a set up for a discord bot with some basic commands, framework to easily add future commands/routines
 
 ## Table of Contents
-[1. install](#install)
+[1. description](#description)
 
-[2. script usage](#script-usage)
+[2. install](#install)
 
-[3. commands](#commands)
+[3. script usage](#script-usage)
 
-[4. credits](#credits)
+[4. commands](#commands)
+
+[5. credits](#credits)
 
 ## Install
 1. clone the repo
