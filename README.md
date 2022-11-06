@@ -1,4 +1,4 @@
-# Bot Template
+# QOTD Michael Bot
 
 ## Table of Contents
 [1. description](#description)
@@ -12,7 +12,7 @@
 [5. credits](#credits)
 
 ## Description
-just a set up for a discord bot with some basic commands, framework to easily add future commands/routines
+posts daily questions . also michael monday
 
 ## To-Do List
 - mark questions as read?
