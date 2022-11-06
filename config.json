@@ -1,0 +1,19 @@
+{
+    "guild": "930384259036901396", 
+    "channels": {
+        "daily-question-channel": "1038552114303078510",
+        "michael-monday-channel": "930387394807595009"
+    },
+    "qotd": {
+        "row": 10,
+        "lastThread": "11-6-2022 Question of the Day",
+        "schedule": "daily",
+        "day": "MON",
+        "hour": "10",
+        "minute": "0",
+        "second": "0",
+        "archives": true,
+        "locks": true
+    }
+
+}

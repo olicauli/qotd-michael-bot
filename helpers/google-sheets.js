@@ -68,4 +68,21 @@ async function authorize() {
   return { sheetsClient };
 }
 
-module.exports = { authorize };
+async function getColumnFromSheets(auth)
+{
+  const sheets = google.sheets({version: 'v4', auth});
+    const res = await sheets.spreadsheets.values.get({
+      spreadsheetId: '1shdx6hAiuUYrKclQReB_wtpRNk0mZvjpJ9JlF8olAsY',
+      range: 'Sheet1!A2:A', //the entire first column starting from the 2nd row
+    });
+
+    //check if there is data
+    const rows = res.data.values;
+    if (!rows || rows.length === 0) {
+      console.log('No data found.');
+      return null;
+    }
+    return rows;
+}
+
+module.exports = { authorize, getColumnFromSheets };
