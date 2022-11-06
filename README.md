@@ -22,7 +22,7 @@ just a set up for a discord bot with some basic commands, framework to easily ad
 1. clone the repo
 2. run `npm install`
 3. create a `.env` file in the root directory, set `GUILD_ID`, `CLIENT_ID`, `TOKEN`, values to dev discord server ID, the bot application ID, and the bot token respectively
-4. set `GENERAL_ID` as your general channel (it posts michael monday there), and `DAILY_TOPIC_ID` for your daily questions channel
+4. set `GENERAL_ID` as your general channel (it posts michael monday there), and `DAILY_TOPIC_ID` for your daily questions channel (it creates daily question threads there)
 5. start the bot with `npm run start`
 
 ## Script Usage
