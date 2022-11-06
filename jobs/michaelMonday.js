@@ -1,8 +1,9 @@
 //NOT WRITTEN BY ME, code is by cam!
 //see the original repl.it: https://replit.com/@ATechAdventurer/Michael-Monday-Bot?v=1
 const { CronJob } = require('cron');
-const guildId = process.env.GUILD_ID;
-const channelId = process.env.GENERAL_ID;
+const Settings = require('../config.json');
+const guildId = Settings.guild;
+const channelId = Settings.channels['michael-monday-channel'];
 const TEXT_CHANNEL = '0';
 
 function runMichaelMonday(client)
