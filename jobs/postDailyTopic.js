@@ -4,9 +4,11 @@ const fs = require('fs');
 const guildId = process.env.GUILD_ID;
 const channelId = process.env.DAILY_TOPIC_ID;
 const TEXT_CHANNEL = '0';
+const Helpers = require('../helpers/helpers.js');
 
 /**
- * Prints the names and majors of students in a sample spreadsheet:
+ * reads the question list from the google sheet below
+ * and, every day at 10am, sends one of them.
  * @see https://docs.google.com/spreadsheets/d/1shdx6hAiuUYrKclQReB_wtpRNk0mZvjpJ9JlF8olAsY/edit
  * @param {google.auth.OAuth2} auth The authenticated Google OAuth client.
  */
@@ -33,36 +35,67 @@ async function askQuestion(client, auth) {
     if (!channel || channel.type != TEXT_CHANNEL) {
       return;
     }
-
-    //read what row we're currently on from the json file
+    
+    //read what row we're currently on and what
+    //the name of the last thread is from the json file
     let row = JSON.parse(fs.readFileSync('./data/row-index.json'));
 
     const job = new CronJob('* * * * * *', async () => { //every day at 10am
-      if (row.index < rows.length)
+      //if there was a previous thread, we need to archive it
+      if (row.lastThread != "")
       {
-        printQuestion(channel, rows, row.index);
-        row.index++;
+        const threads = channel.threads.cache.filter(x => x.name == row.lastThread);
+        if (threads.length != 0)
+        {
+          threads.forEach(async thread => {
+            if (!thread.locked && !thread.archived)
+            {
+              await thread.setLocked(true).catch(console.error);
+              await thread.setArchived(true).catch(console.error);
+            }
+          });
+        }
+      }
+      if (row.index < rows.length) //if we're not at the end of the question list
+      {
+        row.lastThread = Helpers.getTopicThreadTitle();
+        printQuestion(channel, rows, row.index++, row.lastThread);
         writeToFile(row);
       }
       else //if it's at the end of the question list,
       {
-        //loop back to the beginning
         await channel.send({
           content: "We're at the end of the question list! Starting from the beginning."
         });
-        printQuestion(channel, rows, 0);
-        row.index = 1;
+        //print the question, create a thread with the current date,
+        //and update the file object.
+        row.index = 0;
+        row.lastThread = Helpers.getTopicThreadTitle();
+        printQuestion(channel, rows, row.index++);
         writeToFile(row);
       }
     }, null, true, 'America/Chicago');
     job.start();
   }
 
-async function printQuestion(channel, rows, index)
+async function printQuestion(channel, twoDArr, index, tname)
 {
-  await channel.send({
-    content: `${rows[index][0]}`
+  const message = await channel.send({
+    content: `${twoDArr[index][0]}`
   });
+  createThread(message, tname);
+}
+
+async function createThread(message, tname)
+{
+  //console.log(message);
+  const thread = await message.startThread({
+    name: tname,
+    autoArchiveDuration: 1440, //1440 minutes = 24 hours
+    reason: 'Thread for answering the daily topic',
+  });
+
+  console.log(`created thread ${thread.name}`);
 }
 
 function writeToFile(data)
