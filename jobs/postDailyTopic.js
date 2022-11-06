@@ -40,7 +40,7 @@ async function askQuestion(client, auth) {
     //the name of the last thread is from the json file
     let row = JSON.parse(fs.readFileSync('./data/row-index.json'));
 
-    const job = new CronJob('* * * * * *', async () => { //every day at 10am
+    const job = new CronJob('0 56 0 * * *', async () => { //every day at 10am
       //if there was a previous thread, we need to archive it
       if (row.lastThread != "")
       {
@@ -71,7 +71,7 @@ async function askQuestion(client, auth) {
         //and update the file object.
         row.index = 0;
         row.lastThread = Helpers.getTopicThreadTitle();
-        printQuestion(channel, rows, row.index++);
+        printQuestion(channel, rows, row.index++, row.lastThread);
         writeToFile(row);
       }
     }, null, true, 'America/Chicago');
