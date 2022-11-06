@@ -26,37 +26,53 @@ async function askQuestion(client, auth) {
 
     //check if we're in a channel
     const guild = client.guilds.cache.get(guildId);
-        if (!guild) {
-          return;
-        }
-        const channel = guild.channels.cache.get(channelId);
-        if (!channel || channel.type != TEXT_CHANNEL) {
-          return;
-        }
-    let i = 0;
-    console.log(`index: ${i}\n rowlength: ${rows.length}`);
+    if (!guild) {
+        return;
+      }
+    const channel = guild.channels.cache.get(channelId);
+    if (!channel || channel.type != TEXT_CHANNEL) {
+      return;
+    }
+
+    //read what row we're currently on from the json file
+    let row = JSON.parse(fs.readFileSync('./data/row-index.json'));
+
     const job = new CronJob('* * * * * *', async () => { //every day at 10am
-        if (i < rows.length)
-        {
-          console.log(`i < rowlength: ${i < rows.length}`);
-          await channel.send({
-            content: `${rows[i++][0]}`
-          });
-        }
-        else //if it's at the end of the question list,
-        {
-          //loop back to the beginning
-          await channel.send({
-            content: "We're at the end of the question list! Starting from the beginning."
-          });
-          i = 0;
-          await channel.send({
-            content: `${rows[i++][0]}`
-          });
-        }
-        },
-        null, true, 'America/Chicago');
+      if (row.index < rows.length)
+      {
+        printQuestion(channel, rows, row.index);
+        row.index++;
+        writeToFile(row);
+      }
+      else //if it's at the end of the question list,
+      {
+        //loop back to the beginning
+        await channel.send({
+          content: "We're at the end of the question list! Starting from the beginning."
+        });
+        printQuestion(channel, rows, 0);
+        row.index = 1;
+        writeToFile(row);
+      }
+    }, null, true, 'America/Chicago');
     job.start();
   }
+
+async function printQuestion(channel, rows, index)
+{
+  await channel.send({
+    content: `${rows[index][0]}`
+  });
+}
+
+function writeToFile(data)
+{
+  fs.writeFile('./data/row-index.json', JSON.stringify(data), function(err)
+  {
+    if (err) {
+      console.log(err);
+    }
+  });
+}
 
 module.exports = { askQuestion };
