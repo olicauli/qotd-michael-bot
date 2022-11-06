@@ -37,6 +37,8 @@ posts daily questions . also michael monday. edit settings for the bot in `confi
 
 - `guild`: specifies what guild it will post in. accepts a guild ID
 - `channels`: the channels it will post michael monday and the daily questions in respectively. accepts channel IDs
+- `sheet`: settings for the google sheet it reads from. 
+    - `id` is the ID of the google sheet, found in the URL like this: https://docs.google.com/spreadsheets/d/ID_NUMBER/edit
 - `qotd`: the settings for when it will post the qotd.
     - `rowIndex` is the last row it read from the google spreadsheet. updates each time it posts a question. accepts integer values
     - `lastThread` is the name of the last thread it opened. updates each time it posts a question. accepts Snowflake thread ID

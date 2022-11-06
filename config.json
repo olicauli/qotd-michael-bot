@@ -4,8 +4,11 @@
         "daily-question-channel": "1038552114303078510",
         "michael-monday-channel": "930387394807595009"
     },
+    "sheet": {
+        "id": "1shdx6hAiuUYrKclQReB_wtpRNk0mZvjpJ9JlF8olAsY"
+    },
     "qotd": {
-        "rowIndex": 1,
+        "rowIndex": 6,
         "lastThread": "11-6-2022 Question of the Day",
         "day": "*",
         "hour": "10",

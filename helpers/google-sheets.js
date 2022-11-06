@@ -6,6 +6,7 @@ const path = require('path');
 const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
+const Settings = require('../config.json');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -72,7 +73,7 @@ async function getColumnFromSheets(auth)
 {
   const sheets = google.sheets({version: 'v4', auth});
     const res = await sheets.spreadsheets.values.get({
-      spreadsheetId: '1shdx6hAiuUYrKclQReB_wtpRNk0mZvjpJ9JlF8olAsY',
+      spreadsheetId: Settings.sheet.id,
       range: 'Sheet1!A2:A', //the entire first column starting from the 2nd row
     });
 
