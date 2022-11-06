@@ -1,6 +1,4 @@
 const Settings = require('../config.json');
-const Sheets = require('../helpers/google-sheets');
-const fs = require('fs');
 
 function lockAndArchiveOldThreads(channel, tName)
 {
@@ -35,16 +33,6 @@ async function printQuestion(channel, twoDArr, index, tname)
   createThread(message, tname);
 }
 
-function writeToFile(data)
-{
-  fs.writeFile('./data/row-index.json', JSON.stringify(data), function(err)
-  {
-    if (err) {
-      console.log(err);
-    }
-  });
-}
-
 function getThreadTitle()
 {
     let date = new Date().toLocaleDateString('en-us');
@@ -64,4 +52,58 @@ async function createThread(message, tname)
   console.log(`created thread ${thread.name}`);
 }
 
-module.exports = { lockAndArchiveOldThreads, writeToFile, getThreadTitle, printQuestion };
+function schedule(day, hour, minute, second)
+{
+    day = validateDay(day);
+    if ((hour > 24 || hour < 0) && hour != '*')
+    {
+        console.error("ERROR: invalid hour! using default");
+        hour = 0;
+    }
+
+    if ((minute > 60 || minute < 0) && minute != '*')
+    {
+        console.error("ERROR: invalid minute! using default");
+        minute = 0;
+    }
+    if ((second > 60 || second < 0) && second != '*')
+    {
+        console.error("ERROR: invalid second! using default");
+        second = 0;
+        //err
+    }
+
+    return [second, minute, hour, '*', '*', day].join(' ');
+}
+
+function validateDay(day)
+{
+    console.log(day);
+    switch (day)
+    {
+        case "MON":
+            break;
+        case "TUE":
+            break;
+        case "WED":
+            break;
+        case "THU":
+            break;
+        case "FRI":
+            break;
+        case "SAT":
+            break;
+        case "SUN":
+            break;
+        case "*":
+            break;
+        default:
+            if (day < 0 || day > 6)
+                console.error("ERROR: invalid day! using default");
+                day = "MON";
+            break;
+    }
+    return day;
+}
+
+module.exports = { lockAndArchiveOldThreads, getThreadTitle, printQuestion, schedule };

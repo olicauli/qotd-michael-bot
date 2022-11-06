@@ -1,4 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
+const fs = require('fs');
 const TEXT_CHANNEL = '0';
 const DEFAULT_COLOR = 0x0061ff;
 
@@ -31,4 +32,14 @@ function checkGuildAndChannel(guild, channel)
     return 0;
 }
 
-module.exports = {sendEmbed, checkGuildAndChannel, DEFAULT_COLOR};
+function updateConfig(data)
+{
+  fs.writeFile('./config.json', JSON.stringify(data, null, 4), function(err)
+  {
+    if (err) {
+      console.log(err);
+    }
+  });
+}
+
+module.exports = {sendEmbed, checkGuildAndChannel, updateConfig, DEFAULT_COLOR};

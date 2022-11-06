@@ -7,12 +7,14 @@
 
 [3. install](#install)
 
-[4. script usage](#script-usage)
+[4. config](#install)
 
-[5. credits](#credits)
+[5. script usage](#script-usage)
+
+[6. credits](#credits)
 
 ## Description
-posts daily questions . also michael monday
+posts daily questions . also michael monday. edit settings for the bot in `config.json`
 
 ## To-Do List
 - mark questions as read?
@@ -29,6 +31,14 @@ posts daily questions . also michael monday
 3. create a `.env` file in the root directory, set `GUILD_ID`, `CLIENT_ID`, `TOKEN`, values to dev discord server ID, the bot application ID, and the bot token respectively
 4. set `GENERAL_ID` as your general channel (it posts michael monday there), and `DAILY_TOPIC_ID` for your daily questions channel (it creates daily question threads there)
 5. start the bot with `npm run start`
+
+## Config
+`config.json` contains the following options:
+
+- `guild`: specifies what guild it will post in
+- `channels`: the channels it will post michael monday and the daily questions in respectively
+- `qotd`: the settings for when it will post the qotd.
+    - `
 
 ## Script Usage
 `npm run start`

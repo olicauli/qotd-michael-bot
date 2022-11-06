@@ -1,5 +1,4 @@
 const { CronJob } = require('cron');
-const fs = require('fs');
 const Settings = require('../config.json');
 const guildId = Settings.guild;
 //const guildId = process.env.GUILD_ID;
@@ -14,15 +13,13 @@ const Helpers = require('../helpers/helpers.js');
  * and, every day at 10am, sends one of them.
 **/
 async function postTopic(client, auth) {
-    console.log(`guild from config: ${guildId}`);
-    console.log(`channel from config: ${channelId}`);
-
+    //console.log(Settings);
     //check if we're in a channel
     const guild = client.guilds.cache.get(guildId);
     const channel = guild.channels.cache.get(channelId);
 
     let err = Helpers.checkGuildAndChannel(guild, channel);
-    if (!err)
+    if (err)
     {
       return;
     }
@@ -32,30 +29,33 @@ async function postTopic(client, auth) {
 
     //read what row we're currently on and what
     //the name of the last thread is from the json file
-    let row = JSON.parse(fs.readFileSync('./data/sheets-index.json'));
-    //let config = Settings;
+    //let row = JSON.parse(fs.readFileSync('./data/sheets-index.json'));
+    let config = Settings;
+    let schedule = Topic.schedule(config.qotd.day, config.qotd.hour,
+      config.qotd.minute, config.qotd.second);
+    console.log(schedule);
 
-    const job = new CronJob('* * * * * *', async () => { //every day at 10am
+    const job = new CronJob(schedule, async () => { //every day at 10am
       //if there was a previous thread, we need to archive it
-      if (row.lastThread != "") 
+      if (config.qotd.lastThread != "") 
       {
-        Topic.lockAndArchiveOldThreads(channel, row.lastThread); 
+        Topic.lockAndArchiveOldThreads(channel, config.qotd.lastThread); 
       }
-      if (row.index < questions.length) //if we're not at the end of the question list
+      if (config.qotd.rowIndex < questions.length) //if we're not at the end of the question list
       {
-        row.lastThread = Topic.getThreadTitle();
-        Topic.printQuestion(channel, questions, row.index++, row.lastThread);
-        Topic.writeToFile(row);
+        config.qotd.lastThread = Topic.getThreadTitle();
+        Topic.printQuestion(channel, questions, config.qotd.rowIndex++, config.qotd.lastThread);
+        Helpers.updateConfig(config);
       }
       else //if it's at the end of the question list,
       {
         await channel.send({
           content: "We're at the end of the question list! Starting from the beginning."
         });
-        row.index = 0;
-        row.lastThread = Topic.getThreadTitle();
-        Topic.printQuestion(channel, questions, row.index++, row.lastThread);
-        Topic.writeToFile(row);
+        config.qotd.rowIndex = 0;
+        config.qotd.lastThread = Topic.getThreadTitle();
+        Topic.printQuestion(channel, questions, config.qotd.rowIndex++, config.qotd.lastThread);
+        Helpers.updateConfig(config);
       }
     }, null, true, 'America/Chicago');
     job.start();
