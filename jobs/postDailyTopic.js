@@ -1,3 +1,5 @@
+//code partially from here: https://developers.google.com/sheets/api/quickstart/nodejs
+
 const { google } = require('googleapis');
 const { CronJob } = require('cron');
 const fs = require('fs');

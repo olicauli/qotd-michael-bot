@@ -1,3 +1,6 @@
+//code modified from here:
+//https://discordjs.guide/creating-your-bot/event-handling.html#individual-event-files
+
 const { Events } = require('discord.js');
 
 module.exports = {
