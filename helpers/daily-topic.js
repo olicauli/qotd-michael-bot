@@ -68,12 +68,13 @@ function getThreadTitle()
 
 async function createThread(message, tname)
 {
-  //console.log(message);
-  const thread = await message.startThread({
-    name: tname,
-    autoArchiveDuration: 1440, //1440 minutes = 24 hours
-    reason: 'Thread for answering the daily topic',
-  });
+
+    //console.log("in create thread");
+    //console.log(message);
+    const thread = await message.startThread({
+        name: tname,
+        autoArchiveDuration: 1440, //1440 minutes = 24 hours
+        reason: 'Thread for answering the daily topic', });
 
   console.log(`created thread ${thread.name}`);
 }

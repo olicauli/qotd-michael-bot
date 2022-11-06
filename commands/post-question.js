@@ -22,16 +22,24 @@ module.exports = {
         const auth = await Sheets.authorize();
         let questions = await Sheets.getColumnFromSheets(auth);
         if (questions == null) {
-            await interaction.reply({content: "ERROR: no data found! is the spreadsheet empty?", ephemereal: true}); 
+            await interaction.reply({content: "ERROR: no data found! is the spreadsheet empty?", ephemeral: true}); 
             return; 
         }
 
-        //const guild = interaction.guild;
+        //get the argument
+        const index = interaction.options.getInteger('index');
+        console.log(index);
+        if (index != null)
+        {
+            Settings.qotd.rowIndex = index;
+        }
+
+        //check channel
         const channel = interaction.guild.channels.cache.get(Settings.channels['daily-question-channel']);
         let err = Helpers.checkGuildAndChannel(interaction.guild, channel);
 
         if (err) { console.log("ERROR: invalid guild or channel"); return; } //maybe add some actual error checking here later
         Topic.postQuestion(Settings, questions, channel);
-        await interaction.reply({content: "Successfully posted!", ephemereal: true});
+        await interaction.reply({content: "Successfully posted!", ephemeral: true});
     }
 }

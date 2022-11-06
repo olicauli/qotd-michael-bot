@@ -16,10 +16,10 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers), //anyone who can ban people can also use this command
     async execute(interaction)
     {
-        const index = interaction.options.getInteger('row index');
+        const index = interaction.options.getInteger('index');
         let config = Settings;
         config.qotd.rowIndex = index;
         Helpers.updateConfig(config);
-        await interaction.reply({content: "Successfully updated the config!", ephemereal: true});
+        await interaction.reply({ content: "Successfully updated the config!", ephemeral: true });
     }
 }

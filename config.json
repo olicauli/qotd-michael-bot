@@ -1,14 +1,14 @@
 {
     "guild": "930384259036901396",
     "channels": {
-        "daily-question-channel": "1038552114303078510",
+        "daily-question-channel": "930387394807595009",
         "michael-monday-channel": "930387394807595009"
     },
     "sheet": {
         "id": "1shdx6hAiuUYrKclQReB_wtpRNk0mZvjpJ9JlF8olAsY"
     },
     "qotd": {
-        "rowIndex": 6,
+        "rowIndex": 1,
         "lastThread": "11-6-2022 Question of the Day",
         "day": "*",
         "hour": "10",
