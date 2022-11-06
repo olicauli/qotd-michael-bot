@@ -35,10 +35,14 @@ posts daily questions . also michael monday. edit settings for the bot in `confi
 ## Config
 `config.json` contains the following options:
 
-- `guild`: specifies what guild it will post in
-- `channels`: the channels it will post michael monday and the daily questions in respectively
+- `guild`: specifies what guild it will post in. accepts a guild ID
+- `channels`: the channels it will post michael monday and the daily questions in respectively. accepts channel IDs
 - `qotd`: the settings for when it will post the qotd.
-    - `
+    - `rowIndex` is the last row it read from the google spreadsheet. updates each time it posts a question. accepts integer values
+    - `lastThread` is the name of the last thread it opened. updates each time it posts a question. accepts Snowflake thread ID
+    - `day`, `hour`, `minute`, `second` are what day of the week, hour, minute, and second it will post a question on, respectively. see [nodejs cron notation](https://www.digitalocean.com/community/tutorials/nodejs-cron-jobs-by-examples) for acceptable values
+    - `archives`: whether the bot will archive an old thread. accepts boolean values (true or false)
+    - `locks`: whether the bot will lock an old thread. accepts boolean values (true or false)
 
 ## Script Usage
 `npm run start`
