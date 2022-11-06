@@ -1,5 +1,8 @@
-//NOT WRITTEN BY ME, code is by cam!
+/********************************************************* */
+//CODE WRITTEN BY CAM
+/********************************************************* */
 //see the original repl.it: https://replit.com/@ATechAdventurer/Michael-Monday-Bot?v=1
+
 const { CronJob } = require('cron');
 const Settings = require('../config.json');
 const guildId = Settings.guild;

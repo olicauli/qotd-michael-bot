@@ -28,9 +28,13 @@ posts daily questions . also michael monday. edit settings for the bot in `confi
 ## Install
 1. clone the repo
 2. run `npm install`
-3. create a `.env` file in the root directory, set `GUILD_ID`, `CLIENT_ID`, `TOKEN`, values to dev discord server ID, the bot application ID, and the bot token respectively
-4. set `GENERAL_ID` as your general channel (it posts michael monday there), and `DAILY_TOPIC_ID` for your daily questions channel (it creates daily question threads there)
+3. create a `.env` file in the root directory, set `CLIENT_ID`, `TOKEN`, values to the bot application ID and the bot token respectively
+4. set up `config.json`:
+    - set `guild`, `daily-question-channel`, and `michael-monday-channel` to the appropriate guild and channel IDs
+    - set `sheet`'s `id` value to the google sheet you want the bot to read questions from. NOTE: it will read values from column A2 to the end of A, so put questions in these cells. see [config](#config) for more information on what sheet id is.
+    - `qotd` can be ignored on initial set up. see [config](#config) for more information on it
 5. start the bot with `npm run start`
+6. if you want to use the bot's slash commands, make sure to run `npm run deploy guild` or `npm run deploy global` to deploy the commands
 
 ## Config
 `config.json` contains the following options:
@@ -63,6 +67,8 @@ posts daily questions . also michael monday. edit settings for the bot in `confi
 ## Credits
 cam, oli, chase
 
-uses the discordjs framework
+uses the discordjs framework and snippets of code from discordjs's guide on making a discord bot. discordjs's guide is under an MIT license, and is included in this repo as LICENSE.txt.
 
 google sheets quickstart from here: https://developers.google.com/sheets/api/quickstart/nodejs
+
+the google sheets quickstart code is distributed under the apache license: https://www.apache.org/licenses/LICENSE-2.0
