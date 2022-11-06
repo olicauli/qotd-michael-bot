@@ -53,4 +53,8 @@ just a set up for a discord bot with some basic commands, framework to easily ad
 - lists basic user info
 
 ## Credits
-UNFINISHED; i'll add specific licenses and stuff later
+cam, oli, chase
+
+uses the discordjs framework
+
+google sheets quickstart from here: https://developers.google.com/sheets/api/quickstart/nodejs
