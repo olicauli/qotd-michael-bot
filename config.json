@@ -5,7 +5,7 @@
         "michael-monday-channel": "930387394807595009"
     },
     "qotd": {
-        "rowIndex": 14,
+        "rowIndex": 4,
         "lastThread": "11-6-2022 Question of the Day",
         "day": "*",
         "hour": "*",
@@ -13,10 +13,5 @@
         "second": "*",
         "archives": true,
         "locks": true
-    },
-    "michael": {
-        "hour": 10,
-        "minute": 0,
-        "second": 0
     }
 }
