@@ -1,4 +1,30 @@
 const Settings = require('../config.json');
+const Helpers = require('../helpers/helpers.js');
+
+async function postQuestion(config, questions, channel)
+{
+  //if there was a previous thread, we need to archive it
+  if (config.qotd.lastThread != "") 
+  {
+    lockAndArchiveOldThreads(channel, config.qotd.lastThread); 
+  }
+  if (config.qotd.rowIndex < questions.length) //if we're not at the end of the question list
+  {
+    config.qotd.lastThread = getThreadTitle();
+    printQuestion(channel, questions, config.qotd.rowIndex++, config.qotd.lastThread);
+    Helpers.updateConfig(config);
+  }
+  else //if it's at the end of the question list,
+  {
+    await channel.send({
+      content: "We're at the end of the question list! Starting from the beginning."
+    });
+    config.qotd.rowIndex = 0;
+    config.qotd.lastThread = getThreadTitle();
+    printQuestion(channel, questions, config.qotd.rowIndex++, config.qotd.lastThread);
+    Helpers.updateConfig(config);
+  }
+}
 
 function lockAndArchiveOldThreads(channel, tName)
 {
@@ -106,4 +132,4 @@ function validateDay(day)
     return day;
 }
 
-module.exports = { lockAndArchiveOldThreads, getThreadTitle, printQuestion, schedule };
+module.exports = { postQuestion, lockAndArchiveOldThreads, getThreadTitle, printQuestion, schedule };

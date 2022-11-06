@@ -1,4 +1,6 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const Helpers = require('../helpers/helpers.js');
+const Settings = require('../config.json');
 
 //commands composed of two members:
 //data, which provides the command definition for registering to discord
@@ -6,9 +8,18 @@ const { SlashCommandBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('set-question')
-        .setDescription('replies with pong'),
+        .setDescription('sets what row the bot will read from next for the QOTD.')
+        .addIntegerOption(option =>
+            option.setName('index')
+            .setDescription('the index for the row you want to read from')
+            .setRequired(true))
+        .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers), //anyone who can ban people can also use this command
     async execute(interaction)
     {
-        await interaction.reply('PONG');
+        const index = interaction.options.getInteger('row index');
+        let config = Settings;
+        config.qotd.rowIndex = index;
+        Helpers.updateConfig(config);
+        await interaction.reply({content: "Successfully updated the config!", ephemereal: true});
     }
 }

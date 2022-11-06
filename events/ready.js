@@ -1,7 +1,7 @@
 const { Events } = require('discord.js');
 const { authorize } = require('../helpers/google-sheets');
 const michaelMonday = require('../jobs/michaelMonday');
-const DailyTopicJob = require ('../jobs/postDailyTopic');
+const DailyTopicJob = require ('../jobs/dailyTopic');
 
 require('dotenv').config();
 
@@ -14,6 +14,6 @@ module.exports = {
         michaelMonday.runMichaelMonday(client);
 
         let sheetsClient = await authorize();
-        DailyTopicJob.postTopic(client, sheetsClient);
+        DailyTopicJob.runDailyTopic(client, sheetsClient);
     },
 };

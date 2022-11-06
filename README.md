@@ -20,7 +20,7 @@ posts daily questions . also michael monday. edit settings for the bot in `confi
 - mark questions as read?
 - shuffle questions?
 - `set-question` command that lets you change which row it will ask next
-- `ask-question` command that manually prints out the question (in case the schedule fails)
+- `post-question` command that manually prints out the question (in case the schedule fails)
 - `change-schedule` command that lets you change when the bot asks questions, or when on mondays it posts me and michael
 - `ping`  command to check if the bot is responsive
 - make a `config.json` where question schedule, channels it posts in, etc are more intuitively configurable
