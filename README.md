@@ -16,6 +16,8 @@
 ## Description
 posts daily questions . also michael monday. edit settings for the bot in `config.json`
 
+IF THE `config.json` IS EMPTY, IT YEETS ITSELF. just dont do it. dont leave config empty. <3
+
 ## To-Do List
 - mark questions as read?
 - shuffle questions?
@@ -47,8 +49,8 @@ posts daily questions . also michael monday. edit settings for the bot in `confi
     - `rowIndex` is the last row it read from the google spreadsheet. updates each time it posts a question. accepts integer values
     - `lastThread` is the name of the last thread it opened. updates each time it posts a question. accepts Snowflake thread ID
     - `day`, `hour`, `minute`, `second` are what day of the week, hour, minute, and second it will post a question on, respectively. see [nodejs cron notation](https://www.digitalocean.com/community/tutorials/nodejs-cron-jobs-by-examples) for acceptable values
-    - `archives`: whether the bot will archive an old thread. accepts boolean values (true or false)
-    - `locks`: whether the bot will lock an old thread. accepts boolean values (true or false)
+    - `archives`: whether the bot will archive an old QOTD thread. accepts boolean values (true or false)
+    - `locks`: whether the bot will lock an old QOTD thread. accepts boolean values (true or false)
 
 ## Script Usage
 `npm run start`
