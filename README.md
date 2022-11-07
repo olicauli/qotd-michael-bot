@@ -16,16 +16,11 @@
 ## Description
 posts daily questions . also michael monday. edit settings for the bot in `config.json`
 
-IF THE `config.json` IS EMPTY, IT YEETS ITSELF. just dont do it. dont leave config empty. <3
+IF `config.json` IS EMPTY, IT YEETS ITSELF. just dont do it. dont leave config empty. <3
 
 ## To-Do List
 - mark questions as read?
 - shuffle questions?
-- `set-question` command that lets you change which row it will ask next
-- `post-question` command that manually prints out the question (in case the schedule fails)
-- `change-schedule` command that lets you change when the bot asks questions, or when on mondays it posts me and michael
-- `ping`  command to check if the bot is responsive
-- make a `config.json` where question schedule, channels it posts in, etc are more intuitively configurable
 
 ## Install
 1. clone the repo
@@ -74,3 +69,5 @@ uses the discordjs framework and snippets of code from discordjs's guide on maki
 google sheets quickstart from here: https://developers.google.com/sheets/api/quickstart/nodejs
 
 the google sheets quickstart code is distributed under the apache license: https://www.apache.org/licenses/LICENSE-2.0
+
+if there's any other work that is not properly credited in here, please let me know! i have the upid memory
