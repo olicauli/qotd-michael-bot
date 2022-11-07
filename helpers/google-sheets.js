@@ -1,11 +1,31 @@
-//CODE MODIFIED FROM GOOGLE SHEET'S NODEJS QUICKSTART GUIDE
+/********************************************************* */
+//*CODE MODIFIED FROM GOOGLE SHEET'S NODEJS QUICKSTART GUIDE
 // https://developers.google.com/sheets/api/quickstart/nodejs
+
+/********************************************************* */
+
+/**
+ * Copyright 2022 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 const fs = require('fs').promises;
 const path = require('path');
 const process = require('process');
 const {authenticate} = require('@google-cloud/local-auth');
 const {google} = require('googleapis');
+const Settings = require('../config.json');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
@@ -68,4 +88,21 @@ async function authorize() {
   return { sheetsClient };
 }
 
-module.exports = { authorize };
+async function getColumnFromSheets(auth)
+{
+  const sheets = google.sheets({version: 'v4', auth});
+    const res = await sheets.spreadsheets.values.get({
+      spreadsheetId: Settings.sheet.id,
+      range: 'Sheet1!A2:A', //the entire first column starting from the 2nd row
+    });
+
+    //check if there is data
+    const rows = res.data.values;
+    if (!rows || rows.length === 0) {
+      console.log('No data found.');
+      return null;
+    }
+    return rows;
+}
+
+module.exports = { authorize, getColumnFromSheets };

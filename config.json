@@ -1,0 +1,20 @@
+{
+    "guild": "930384259036901396",
+    "channels": {
+        "daily-question-channel": "930387394807595009",
+        "michael-monday-channel": "930387394807595009"
+    },
+    "sheet": {
+        "id": "1shdx6hAiuUYrKclQReB_wtpRNk0mZvjpJ9JlF8olAsY"
+    },
+    "qotd": {
+        "rowIndex": 0,
+        "lastThread": "",
+        "day": "*",
+        "hour": "10",
+        "minute": "0",
+        "second": "0",
+        "archives": true,
+        "locks": true
+    }
+}

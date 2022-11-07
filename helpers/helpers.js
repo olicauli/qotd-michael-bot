@@ -1,20 +1,45 @@
 const { EmbedBuilder } = require('discord.js');
+const fs = require('fs');
+const TEXT_CHANNEL = '0';
 const DEFAULT_COLOR = 0x0061ff;
 
 // inside a command, event listener, etc.
 async function sendEmbed(channel, color, content)
 {
     const embed = new EmbedBuilder()
-	.setColor(0x0099FF)
+	.setColor(color)
 	.setDescription(content)
 return await channel.send({ embeds: [embed] });
 }
 
-function getTopicThreadTitle()
+function inGuild(guild)
 {
-    let date = new Date().toLocaleDateString('en-us');
-    return date.replace(/[/]/gm, '-').concat(' Question of the Day');
-    //return Date.now();
+    return guild? true: false;
 }
 
-module.exports = {sendEmbed, getTopicThreadTitle, DEFAULT_COLOR};
+function inChannel(channel)
+{
+    return (channel && channel.type == TEXT_CHANNEL)? true: false;
+}
+
+function checkGuildAndChannel(guild, channel)
+{
+    if (!inGuild(guild) || !inChannel(channel))
+    {
+        console.error(`ERROR: guild is ${guild} and channel is ${channel}`);
+        return 1;
+    }
+    return 0;
+}
+
+function updateConfig(data)
+{
+  fs.writeFile('./config.json', JSON.stringify(data, null, 4), function(err)
+  {
+    if (err) {
+      console.log(err);
+    }
+  });
+}
+
+module.exports = {sendEmbed, checkGuildAndChannel, updateConfig, DEFAULT_COLOR};
