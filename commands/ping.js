@@ -9,10 +9,7 @@ module.exports = {
         .setDescription('replies with pong'),
     async execute(interaction)
     {
-        await interaction.channel.send({content: 'Loading data...', ephemereal: true })
-        .then(async (response) => {
-            response.delete();
-            await interaction.reply(`PONG! latency is ${response.createdTimestamp - interaction.createdTimestamp}ms`);
-        });
+        let message = await interaction.deferReply({ fetchReply: true });
+        await interaction.editReply(`PONG! latency is ${message.createdTimestamp - interaction.createdTimestamp}ms`);
     }
 }

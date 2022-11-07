@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const Helpers = require('../helpers/helpers.js');
+const Messages = require('../helpers/messages.js');
 const Settings = require('../config.json');
 
 //commands composed of two members:
@@ -16,10 +17,18 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers), //anyone who can ban people can also use this command
     async execute(interaction)
     {
+        await interaction.deferReply({ephemeral: true});
         const index = interaction.options.getInteger('index');
+
+        if (index < 0)
+        {
+            Messages.feedback(interaction, "Row index can't be negative. Please enter a positive integer");
+            return;
+        }
+
         let config = Settings;
         config.qotd.rowIndex = index;
         Helpers.updateConfig(config);
-        await interaction.reply({ content: "Successfully updated the config!", ephemeral: true });
+        Messages.feedback(interaction, "Successfully updated the config!");
     }
 }

@@ -2,6 +2,7 @@ const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 const Sheets = require('../helpers/google-sheets.js');
 const Topic = require('../helpers/daily-topic.js');
 const Settings = require('../config.json');
+const Messages = require('../helpers/messages.js');
 const Helpers = require('../helpers/helpers.js');
 
 //commands composed of two members:
@@ -18,20 +19,27 @@ module.exports = {
         .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers),
     async execute(interaction)
     {
+        await interaction.deferReply({ephemeral: true});
+
+        //get the argument
+        const index = interaction.options.getInteger('index');
+        //console.log(index);
+        if (index < 0)
+        {
+            Messages.feedback(interaction, "Row index can't be negative. Please enter a positive integer");
+            return;
+        }
+        else if (index != null)
+        {
+            Settings.qotd.rowIndex = index;
+        }
+
         //get the questions
         const auth = await Sheets.authorize();
         let questions = await Sheets.getColumnFromSheets(auth);
         if (questions == null) {
-            await interaction.reply({content: "ERROR: no data found! is the spreadsheet empty?", ephemeral: true}); 
+            Messages.feedback(interaction, "No data found! Is the spreadsheet empty?"); 
             return; 
-        }
-
-        //get the argument
-        const index = interaction.options.getInteger('index');
-        console.log(index);
-        if (index != null)
-        {
-            Settings.qotd.rowIndex = index;
         }
 
         //check channel
@@ -40,6 +48,6 @@ module.exports = {
 
         if (err) { console.log("ERROR: invalid guild or channel"); return; } //maybe add some actual error checking here later
         Topic.postQuestion(Settings, questions, channel);
-        await interaction.reply({content: "Successfully posted!", ephemeral: true});
+        Messages.feedback(interaction, "Successfully posted!");
     }
 }
