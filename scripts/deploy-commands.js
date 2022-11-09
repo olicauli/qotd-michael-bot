@@ -2,10 +2,11 @@
 
 const { REST, Routes } = require('discord.js');
 require('dotenv').config({ path: '../.env'});
+const Settings = require('../config.json');
 const fs = require('node:fs');
 
 let clientId = process.env.CLIENT_ID;
-let guildId = process.env.GUILD_ID;
+let guildId = Settings.guild;
 let token = process.env.TOKEN;
 
 const clArg = process.argv.slice(2)[0];
@@ -43,7 +44,7 @@ const rest = new REST({ version: '10' }).setToken(token);
 		else if (clArg == "global")
         {
             data = await rest.put(
-                Routes.applicationCommands(clientId, guildId),
+                Routes.applicationCommands(clientId),
                 { body: commands },
             );
         }
