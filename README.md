@@ -7,14 +7,20 @@
 
 [3. install](#install)
 
-[4. config](#install)
+[4. config](#config)
 
 [5. script usage](#script-usage)
 
-[6. credits](#credits)
+[6. commands](#commands)
+- [i. general commands](#general-commands)
+- [ii. QOTD commands](#qotd-commands)
+- [iii. modmail commands](#modmail-commands)
+
+
+[7. credits](#credits)
 
 ## Description
-posts daily questions . also michael monday. edit settings for the bot in `config.json`
+general purpose bot for the pride discord; has question of the day functionality, posts me and michael every monday, and has modmail functionality (WIP). edit settings for the bot in `config.json` (see the [config](#config) section on how to set this up).
 
 IF `config.json` IS EMPTY, IT YEETS ITSELF. just dont do it. dont leave config empty. <3
 
@@ -47,6 +53,10 @@ IF `config.json` IS EMPTY, IT YEETS ITSELF. just dont do it. dont leave config e
     - `archives`: whether the bot will archive an old QOTD thread. accepts boolean values (true or false)
     - `locks`: whether the bot will lock an old QOTD thread. accepts boolean values (true or false)
 
+once you're done setting it up, `config.json` should look something like this: 
+
+![image of config.json](/assets/config-example.png)
+
 ## Script Usage
 `npm run start`
 - starts the discord bot
@@ -54,12 +64,22 @@ IF `config.json` IS EMPTY, IT YEETS ITSELF. just dont do it. dont leave config e
 `npm run deploy [argument]` 
 - `guild` argument deploys all guild commands
 - `global` argument deploys all global commands
-- unused since we have no commands
+    - NOTE: global command deletion doesn't work yet bc i fucked up the script, so don't deploy global commands!!
 
 `npm run delete [argument]` 
 - `guild` argument deletes all guild commands   
 - `global` argument deletes all global commands
-- unused since we have no commands
+
+## Commands
+### General Commands
+- `ping`: replies with `Pong!` as well as the latency.
+
+### QOTD Commands
+- `post-question [index]`: posts a question of the day, using the provided `index` to locate the question's row in the google spreadsheet.
+- `set-question [index]`: sets the row-index to `index`, so that next time the bot posts a question, it will start from that row of the google spreadsheet.
+
+### ModMail Commands
+WIP
 
 ## Credits
 cam, oli, chase
