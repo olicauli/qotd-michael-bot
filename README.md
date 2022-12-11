@@ -25,8 +25,13 @@ general purpose bot for the pride discord; has question of the day functionality
 IF `config.json` IS EMPTY, IT YEETS ITSELF. just dont do it. dont leave config empty. <3
 
 ## To-Do List
+QOTD:
 - mark questions as read?
 - shuffle questions?
+
+MODMAIL:
+- modmail channel; each opened ticket is its own thread
+
 
 ## Install
 1. clone the repo
@@ -69,6 +74,7 @@ once you're done setting it up, `config.json` should look something like this:
 `npm run delete [argument]` 
 - `guild` argument deletes all guild commands   
 - `global` argument deletes all global commands
+    - NOTE: global command deletion doesn't work properly yet!
 
 ## Commands
 ### General Commands
@@ -80,6 +86,9 @@ once you're done setting it up, `config.json` should look something like this:
 
 ### ModMail Commands
 WIP
+- `send`
+- `close`
+- `open`
 
 ## Credits
 cam, oli, chase
