@@ -7,6 +7,11 @@ module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction)
     {
+        //
+        if (!interaction.inGuild())
+        {
+            //call modmail functionality
+        }
         if (!interaction.isChatInputCommand()) return; //if it's not a slash command, return
         const command = interaction.client.commands.get(interaction.commandName);
         if (!command)
