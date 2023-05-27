@@ -16,7 +16,7 @@
 ## Description
 posts daily questions . also michael monday. edit settings for the bot in `config.json`
 
-IF `config.json` IS EMPTY, IT YEETS ITSELF. just dont do it. dont leave config empty. <3
+IF `config.json` IS EMPTY, IT CRASHES. just dont do it. dont leave config empty.
 
 ## To-Do List
 - mark questions as read?
