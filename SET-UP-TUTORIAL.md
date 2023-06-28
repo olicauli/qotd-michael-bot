@@ -16,7 +16,7 @@ You will need:
 1. a VPS or other host, like Heroku.
 2. [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [node.js](https://nodejs.org/en) installed in your VPS/host as well as in a terminal of your choice on the computer you are using to set up the bot.
     - To install these dependencies on your VPS, open up a terminal application and `ssh username@server` into your VPS. Then, you will want to run the command `sudo apt install git-all` (if it isn't already installed) and `sudo apt install nodejs`. This will work if your VPS is running **Ubuntu Linux**, which most do, but if it uses something different, the commands will be slightly different.
-3. A way to transfer files to your VPS. I usually transfer files using the terminal by running `scp username@server:[destination file path] [source you want transferred file path]`. You can also typically set up [FileZilla](https://filezilla-project.org/) to transfer files in a much more intuitive way, but I wouldn't know the specific instructions for that.
+3. A way to transfer files to your VPS. I usually transfer files using the terminal by running `scp` commands. You can also typically set up [FileZilla](https://filezilla-project.org/) to transfer files in a much more intuitive way, but I wouldn't know the specific instructions for that.
 
 ## 1. SET UP THE BOT
 1. Clone this repo to your computer (NOT to the VPS). 
