@@ -31,6 +31,7 @@ IF `config.json` IS EMPTY, IT CRASHES. just dont do it. dont leave config empty.
     - set `sheet`'s `id` value to the google sheet you want the bot to read questions from. NOTE: it will read values from column A2 to the end of A, so put questions in these cells. see [config](#config) for more information on what sheet id is.
     - `qotd` can be ignored on initial set up. see [config](#config) for more information on it
 5. start the bot with `npm run start`
+    - if this is your first time running the bot, you will likely have to log in with your google account to authorize it. the terminal will prompt you.
 6. if you want to use the bot's slash commands, make sure to run `npm run deploy guild` or `npm run deploy global` to deploy the commands
 
 ## Config

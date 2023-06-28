@@ -4,6 +4,7 @@
   "description": "asks a question every day from a google sheet",
   "main": "index.js",
   "scripts": {
+    "set-up": "sh scripts/set-up-config.sh && node .",
     "start": "node .",
     "deploy": "cd scripts && node ./deploy-commands.js",
     "delete": "cd scripts && node ./delete-commands.js",
