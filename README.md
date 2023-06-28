@@ -1,22 +1,24 @@
 # QOTD Michael Bot
 
 ## Table of Contents
-[1. description](#description)
+1. [description](#description)
 
-[2. to-do list](#to-do-list)
+2. [to-do list](#to-do-list)
 
-[3. install](#install)
+3. [install](#install)
 
-[4. config](#install)
+4. [commands](#commands)
 
-[5. script usage](#script-usage)
+4. [config](#install)
 
-[6. credits](#credits)
+5. [script usage](#script-usage)
+
+6. [credits](#credits)
 
 ## Description
 posts daily questions . also michael monday. edit settings for the bot in `config.json`
 
-IF `config.json` IS EMPTY, IT CRASHES. just dont do it. dont leave config empty.
+IF `config.json` IS EMPTY, IT CRASHES. run `npm run set-up` to set up the config.
 
 ## To-Do List
 - mark questions as read?
@@ -33,6 +35,12 @@ IF `config.json` IS EMPTY, IT CRASHES. just dont do it. dont leave config empty.
 5. start the bot with `npm run start`
     - if this is your first time running the bot, you will likely have to log in with your google account to authorize it. the terminal will prompt you.
 6. if you want to use the bot's slash commands, make sure to run `npm run deploy guild` or `npm run deploy global` to deploy the commands
+
+## Commands
+- `ping`: returns the time in milliseconds it took for the command to read and respond to your command.
+- `post-question [index]`: posts the next question in the spreadsheet. 
+    - `[index]` is optional and you do not need to include it in the command. if no index is specified, it posts the next sequential question. specify an index to tell the bot which row in the spreadsheet gets posted. the first question is index 0, each subsequent question you add one to the index.
+- `set-question [index]`: sets the next question to be posted. index is a required options.
 
 ## Config
 `config.json` contains the following options:
@@ -51,6 +59,9 @@ IF `config.json` IS EMPTY, IT CRASHES. just dont do it. dont leave config empty.
 ## Script Usage
 `npm run start`
 - starts the discord bot
+
+`npm run set-up`
+- set up the config.json and start the bot
 
 `npm run deploy [argument]` 
 - `guild` argument deploys all guild commands
