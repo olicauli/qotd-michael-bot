@@ -28,7 +28,7 @@ IF `config.json` IS EMPTY, IT CRASHES. run `npm run set-up` to set up the config
 1. clone the repo
 2. run `npm install`
 3. create a `.env` file in the root directory, set `CLIENT_ID`, `TOKEN`, values to the bot application ID and the bot token respectively
-4. set up `config.json`:
+4. set up `config.json`: run `npm run set-up` to generate a `config.json` OR:
     - set `guild`, `daily-question-channel`, and `michael-monday-channel` to the appropriate guild and channel IDs
     - set `sheet`'s `id` value to the google sheet you want the bot to read questions from. NOTE: it will read values from column A2 to the end of A, so put questions in these cells. see [config](#config) for more information on what sheet id is.
     - `qotd` can be ignored on initial set up. see [config](#config) for more information on it
