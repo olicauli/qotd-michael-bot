@@ -48,7 +48,7 @@ You will need:
 ### FOR VPS
 You can either use the terminal or configure FileZilla to allow you to transfer files. I do not have filezilla figured out, but I can describe how you would move it onto your VPS and then deploy it.
 
-1. Navigate to the folder that contains your `qotd-michael-bot` folder in terminal, and run `scp -r username@server:/ ./qotd-michael-bot` OR use FileZilla to transfer your folder into the home directory of `username`'s account in the VPS.
+1. Navigate to the folder that contains your `qotd-michael-bot` folder in terminal, and run `scp -r username@server:./qotd-michael-bot` OR use FileZilla to transfer your folder into the home directory of `username`'s account in the VPS.
 2. Run `ssh username@server` to ssh into your VPS.
 3. Run `cd qotd-michael-bot` to navigate into the folder that contains the bot.
 4. Run `pm2 start index.js --name michael-bot`
