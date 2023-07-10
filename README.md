@@ -20,6 +20,8 @@ posts daily questions . also michael monday. edit settings for the bot in `confi
 
 IF `config.json` IS EMPTY, IT CRASHES. run `npm run set-up` to set up the config.
 
+for more detailed instruction on how to set this bot up, refer to `SET-UP-TUTORIAL.MD`.
+
 ## To-Do List
 - mark questions as read?
 - shuffle questions?
